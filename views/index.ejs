@@ -1,12 +1,20 @@
 <%-
 include('header'); 
 %>
-    <form>
+    <form class="container w-4/5 mx-auto flex flex-row justify-between">
+      <div class="basis-4/10">
         <label for="Ondernemingsnummer">Ondernemingsnummer:</label>
-        <input type="text" id="Ondernemingsnummer" name="Ondernemingsnummer">
-        <button type="button">Vergelijk</button>
-        <label for="Ondernemingsnummer">Ondernemingsnummer:</label>
-        <input type="text" id="Ondernemingsnummer" name="Ondernemingsnummer">
+        <input type="text" id="Ondernemingsnummer" name="Ondernemingsnummer" class="border border-black rounded-md text-xs px-1 py-1 ml-1" placeholder="0403101811">
+      </div>     
+      <div class="basis-1/10">
+        <button class="px-3 py-1 text-xs border border-black bg-gray-200 rounded-md" type="button">Vergelijk</button>
+        </div>
+
+        <div class="basis-4/10">
+          <label for="Ondernemingsnummer">Ondernemingsnummer:</label>
+          <input type="text" id="Ondernemingsnummer" name="Ondernemingsnummer" class="border border-black rounded-md text-xs px-1 py-1 ml-1" placeholder="0406603610">
+      </div>
+
       </form>
 </main>
 </body>
