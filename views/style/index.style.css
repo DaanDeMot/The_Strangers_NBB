@@ -618,3 +618,13 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:font-semibold:hover {
   font-weight: 600;
 }
+
+.active\:bg-gray-300:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
+.active\:px-2:active {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
