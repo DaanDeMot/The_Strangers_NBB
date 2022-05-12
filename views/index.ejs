@@ -1,78 +1,13 @@
 <%-
-include('header'); 
+include('header');
 %>
-    <form class="container w-4/5 mx-auto flex flex-row justify-between">
-      <div class="basis-4/10">
-        <label for="Ondernemingsnummer">Ondernemingsnummer:</label>
-        <input type="number" id="Ondernemingsnummer" name="Ondernemingsnummer" class="border border-black rounded-md text-xs px-1 py-1 ml-1" placeholder="0403101811">
-      </div>     
-      <div class="basis-1/10">
-        <button onclick="showBedrijfOutput()" id="VergelijkButton" class="px-3 py-1 text-xs border border-black bg-gray-200 rounded-md active:bg-gray-300 active:px-2" type="button">Vergelijk</button>
-        </div>
 
-        <div class="basis-4/10">
-          <label for="Ondernemingsnummer">Ondernemingsnummer:</label>
-          <input type="number" id="Ondernemingsnummer" name="Ondernemingsnummer" class="border border-black rounded-md text-xs px-1 py-1 ml-1" placeholder="0406603610">
-      </div>
+<%-
+include('searchBar');
+%>
 
-      </form>
+<%-
+include('footer');
+%>
 
-      <section id="bedrijfOutput" class="flex justify-between mt-10 invisible">
-      <table class="mt-5 w-5/12 mx-auto  ">
-        <tr class="flex">
-          <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5">TALENT-IT</td>
-        </tr>
-        <tr class="flex"> 
-          <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5">Houtdok-Noordkaai 12</td>
-        </tr>
-        <tr class="flex">
-          <td class=" w-1/5"> </td> <td class="w-4/5">2030 Antwerpen</td>
-        </tr>
-
-        <tr class= ""><td class="h-5"></td></tr>
-
-        <tr class="">
-          <td class="font-bold">Datum neerlegging</td> <td class="text-right">16/09/2021</td>
-        </tr>
-        <tr>
-          <td class="font-bold">Eigen vermogen</td> <td class="text-right text-[color:green]">7.686.379</td>
-        </tr>
-        <tr>
-          <td class="font-bold">Schulden</td> <td class="text-right text-[color:red]">7.262.651</td>
-        </tr>
-        <tr>
-          <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right text-[color:green]">1.591.34</td>
-        </tr>
-        </table>
-
-        <table class="mt-5 w-5/12 mx-auto  ">
-          <tr class="flex">
-            <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5">AllPhi</td>
-          </tr>
-          <tr class="flex"> 
-            <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5">Nijverheidsstraat 13</td>
-          </tr>
-          <tr class="flex">
-            <td class=" w-1/5"> </td> <td class="w-4/5">2260 Westerlo</td>
-          </tr>
-  
-          <tr class= ""><td class="h-5"></td></tr>
-  
-          <tr class="">
-            <td class="font-bold">Datum neerlegging</td> <td class="text-right">16/09/2021</td>
-          </tr>
-          <tr>
-            <td class="font-bold">Eigen vermogen</td> <td class="text-right text-[color:red]">7.686.379</td>
-          </tr>
-          <tr>
-            <td class="font-bold">Schulden</td> <td class="text-right text-[color:green]">1.961.228</td>
-          </tr>
-          <tr>
-            <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right text-[color:red]">414.278</td>
-          </tr>
-          </table>
-        </section>
-</main>
-</body>
-<script src="scripts/Index.script.js"></script>
-</html>
+   
