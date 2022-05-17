@@ -2,57 +2,15 @@ const express = require('express');
 const app = express();
 const ejs= require('ejs'); 
 import fetch from 'cross-fetch';
+import {Address} from './assets/AdresClasse';
+import {Bedrijf} from './assets/BedrijfClasse';
+import {BedrijfProps} from './assets/BedrijfClasse';
+
 app.set('view engine','ejs'); 
 app.set('port', 3000);
-app.use(express.static('views'));
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'views')));
 
-class Address{
-  city:        string;
-  number:      string;
-  postalCode:  string;
-  street:      string;
-
-  constructor(city: string, postalCode:string,street:string, number : string){
-    this.city = city;
-    this.number = number;
-    this.postalCode = postalCode;
-    this.street = street;
-
-  }
-}
-
-class BedrijfProps{
-  eigenVermogen : string;
-  schulden: string;
-  bedrijfswinst:string;
-
-  constructor(eigenVermogen:string, schulden:string, bedrijfswinst:string){
-    this.eigenVermogen = eigenVermogen;
-    this.schulden = schulden;
-    this.bedrijfswinst = bedrijfswinst;
-  }
-}
-
-class Bedrijf{
-  referenceNumber: string;
-  name : string;
-  depositDate: string;
-  address : Address;
-  eigenVermogen : string;
-  schulden: string;
-  bedrijfswinst:string;
-
-  constructor(referenceNumber: string, name: string, depositDate: string, address: Address, eigenVermogen:string, schulden:string, bedrijfswinst:string ) {
-    this.referenceNumber = referenceNumber;
-    this.name = name;
-    this.depositDate = depositDate;
-    this.address = address;
-    this.eigenVermogen = eigenVermogen;
-    this.schulden = schulden;
-    this.bedrijfswinst = bedrijfswinst;
-  }
-
-}
 
 const DetailAPIInput = (async (number : string)  => {
   try {
@@ -62,10 +20,10 @@ const DetailAPIInput = (async (number : string)  => {
           'NBB-CBSO-Subscription-Key' :'de631b01365f42c49905b547f272af74',
           'X-Request-Id':''
       }});
-    
-    if (res.status >= 400) {
-      throw new Error("Bad response from server");
-    }
+      if (res.status >= 400) {
+        const BedrijfPropsOutput = new BedrijfProps("Onbestaande","Onbestaande","Onbestaande");
+        return(BedrijfPropsOutput);
+      } else {
 
     const BedrijfPropsOutput = new BedrijfProps("","","");
 
@@ -87,11 +45,11 @@ const DetailAPIInput = (async (number : string)  => {
         }    
       });
     return (BedrijfPropsOutput);
+  };
   } catch (err) {
     console.error(err);
   }
 });
-
 
 const generalAPIInput = (async (number : string )  => {
     try {
@@ -101,12 +59,13 @@ const generalAPIInput = (async (number : string )  => {
             'NBB-CBSO-Subscription-Key' :'de631b01365f42c49905b547f272af74',
             'X-Request-Id':''
         }});
-      
+      let financialData;
       if (res.status >= 400) {
-        throw new Error("Bad response from server");
-      }  
+        const bedrijf_1 =  new Bedrijf("Onbestaande","Onbestaande","Onbestaande", new Address("", "","Onbestaande",""),"Onbestaande","Onbestaande","Onbestaande");
+        return bedrijf_1;
+      }  else{
       const generalData = await res.json();
-     let  financialData =  await  DetailAPIInput(generalData[0].ReferenceNumber);
+     financialData =  await  DetailAPIInput(generalData[0].ReferenceNumber);
      let eigenVermogen : any = financialData?.eigenVermogen;
      let schulden : any = financialData?.schulden; 
      let bedrijfswinst : any = financialData?.bedrijfswinst; 
@@ -114,6 +73,7 @@ const generalAPIInput = (async (number : string )  => {
         new Address( generalData[0].Address.City,generalData[0].Address.PostalCode,generalData[0].Address.Street, generalData[0].Address.Number),
         eigenVermogen, schulden, bedrijfswinst);
       return bedrijf_1;
+    };
     } catch (err) {
       console.error(err);
     }
@@ -128,13 +88,6 @@ app.get('/',(req:any,res:any)=>{
 app.get('/bedrijfOutput',(req:any,res:any)=>{
   res.render('bedrijfOutput');
  
-});
-
-app.get('/bedrijfOutput/:x', async(req:any,res:any) => {
-  let x = req.params.x;
-  let data = generalAPIInput(x);
-
-  res.render('bedrijfOutput',{bedrijfOutput: await data } )
 });
 
 app.get('/bedrijfOutput/:x/:y', async(req:any,res:any) => {
