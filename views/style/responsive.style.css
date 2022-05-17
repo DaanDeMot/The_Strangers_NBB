@@ -1,0 +1,38 @@
+
+@media screen and (max-width:960px) {
+    .searchBar{
+        width: 100%;
+        display: inline-block;
+    }
+
+    .inputDiv{
+        border: 1px solid black;
+        padding: 10% 0%;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 5%;
+    }
+    .input{ 
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+    }
+    .label{
+        display: block;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .buttonDiv{
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 5%;
+        align-content: center;
+    }
+    .button{
+        width: 50%;
+        height: 5%;
+        display: block;
+        margin: 0 auto;
+    }
+}
