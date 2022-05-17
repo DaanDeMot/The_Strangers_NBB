@@ -10,7 +10,7 @@ include('partials/header.ejs');
  <section id="bedrijfOutput" class="flex justify-between mt-10">
   <table class="mt-5 w-5/12 mx-auto  ">
     <tr class="flex">
-      <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5"><%= bedrijfOutput.name %></td>
+      <td class="font-bold w-1/5" >Naam</td> <td id="naam_L" value='<%= bedrijfOutput.name %>' class="w-4/5"><%= bedrijfOutput.name %></td>
     </tr>
     <tr class="flex"> 
       <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5"><%= bedrijfOutput.address.street %> <%= bedrijfOutput.address.number %></td>
@@ -25,19 +25,19 @@ include('partials/header.ejs');
       <td class="font-bold">Datum neerlegging</td> <td class="text-right"><%= bedrijfOutput.depositDate %></td>
     </tr>
     <tr>
-      <td class="font-bold">Eigen vermogen</td> <td class="text-right text-[color:green]"><%= bedrijfOutput.eigenVermogen %></td>
+      <td class="font-bold">Eigen vermogen</td> <td id="vermogen_L" class="text-right" value='<%= bedrijfOutput.eigenVermogen %>'><%= bedrijfOutput.eigenVermogen %></td>
     </tr>
     <tr>
-      <td class="font-bold">Schulden</td> <td class="text-right text-[color:red]"><%= bedrijfOutput.schulden %></td>
+      <td class="font-bold">Schulden</td> <td id="schulden_L" class="text-right" value='<%= bedrijfOutput.schulden %>'><%= bedrijfOutput.schulden %></td>
     </tr>
     <tr>
-      <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right text-[color:green]"> <%= bedrijfOutput.bedrijfswinst %></td>
+      <td class="font-bold">Bedrijfswinst</td class="text-right"> <td id="winst_L" class="text-right" value='<%= bedrijfOutput.bedrijfswinst %>'> <%= bedrijfOutput.bedrijfswinst %></td>
     </tr>
     </table>
 
     <table class="mt-5 w-5/12 mx-auto  ">
       <tr class="flex">
-        <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5"><%= bedrijfOutput_2.name %></td>
+        <td class="font-bold w-1/5" >Naam</td> <td id="naam_R" value='<%= bedrijfOutput_2.name %>' class="w-4/5"><%= bedrijfOutput_2.name %></td>
       </tr>
       <tr class="flex"> 
         <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5"><%= bedrijfOutput_2.address.street %> <%= bedrijfOutput_2.address.number %></td>
@@ -52,13 +52,13 @@ include('partials/header.ejs');
         <td class="font-bold">Datum neerlegging</td> <td class="text-right"><%= bedrijfOutput_2.depositDate %></td>
       </tr>
       <tr>
-        <td class="font-bold">Eigen vermogen</td> <td class="text-right text-[color:red]"><%= bedrijfOutput_2.eigenVermogen %></td>
+        <td class="font-bold">Eigen vermogen</td> <td id="vermogen_R" class="text-right" value='<%= bedrijfOutput_2.eigenVermogen %>'><%= bedrijfOutput_2.eigenVermogen %></td>
       </tr>
       <tr>
-        <td class="font-bold">Schulden</td> <td class="text-right text-[color:green]"><%= bedrijfOutput_2.schulden %></td>
+        <td class="font-bold">Schulden</td> <td id="schulden_R" class="text-right" value='<%= bedrijfOutput_2.schulden %>'><%= bedrijfOutput_2.schulden %></td>
       </tr>
       <tr>
-        <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right text-[color:red]"><%= bedrijfOutput_2.bedrijfswinst %></td>
+        <td class="font-bold">Bedrijfswinst</td class="text-right" > <td class="text-right" id="winst_R" value='<%= bedrijfOutput_2.bedrijfswinst %>'><%= bedrijfOutput_2.bedrijfswinst %></td>
       </tr>
       </table>
     </section>
@@ -67,7 +67,7 @@ include('partials/header.ejs');
  include('partials/footer.ejs');
  %>
   </body>
-  <script src="../assets/api.scripts.js"></script>
+  <script src="../../assets/vergelijk.script.js"></script>
   </html>
 
      
