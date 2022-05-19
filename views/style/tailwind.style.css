@@ -686,3 +686,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     -webkit-appearance: none;
     margin: 0;
   }
+
+  footer{
+   text-align: center;
+   margin-top: 35%;
+
+  
+  }
