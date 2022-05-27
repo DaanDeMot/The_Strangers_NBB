@@ -1,10 +1,32 @@
 const express = require('express');
 const app = express();
 const ejs= require('ejs'); 
+import { Console } from 'console';
 import fetch from 'cross-fetch';
 import {Address} from './assets/AdresClasse';
 import {Bedrijf} from './assets/BedrijfClasse';
 import {BedrijfProps} from './assets/BedrijfClasse';
+
+//connect to mongodb
+//const dbURI = 'mongodb+srv://User1:Admin1@cluster0.vns4g.mongodb.net/test';
+const{MongoClient} = require('mongodb');
+const uri:string= "mongodb+srv://User1:Admin1@cluster0.vns4g.mongodb.net/NationaleBankBelgie?retryWrites=true&w=majority";
+const client = new MongoClient(uri, {useUnifiedTopology:true});
+const main = async() => {
+  try {
+  await client.connect();
+  let result = await client.db('NationaleBankBelgie').collection('Geschiedenis').insertOne(Bedrijf);
+  console.log(result.insertedId);
+  console.log(result.insertedCount);
+  //let result = await client.db('NationaleBankBelgie').collection('Geschiedenis').insertMany(BedrijfProps);
+  }
+  catch(e){
+    console.error(e);
+  }
+  finally {
+    await client.close();
+  }
+}
 
 app.set('view engine','ejs'); 
 app.set('port', 3000);
