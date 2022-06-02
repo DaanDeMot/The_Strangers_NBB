@@ -12,21 +12,21 @@ import {BedrijfProps} from './assets/BedrijfClasse';
 const{MongoClient} = require('mongodb');
 const uri:string= "mongodb+srv://User1:Admin1@cluster0.vns4g.mongodb.net/NationaleBankBelgie?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {useUnifiedTopology:true});
-const main = async() => {
+const DATABASE ="NationaleBankBelgie";
+const COLLECTION = "Geschiedenis";
+
+const doDBCalls = async() => {
   try {
-  await client.connect();
-  let result = await client.db('NationaleBankBelgie').collection('Geschiedenis').insertOne(Bedrijf);
-  console.log(result.insertedId);
-  console.log(result.insertedCount);
-  //let result = await client.db('NationaleBankBelgie').collection('Geschiedenis').insertMany(BedrijfProps);
+      console.log("-------- Connecting to DB ------------");
+      await client.connect();
+      console.log('-----------Connected-------------------');
+
   }
-  catch(e){
-    console.error(e);
-  }
-  finally {
-    await client.close();
+  catch(exc){
+      console.log("Connection Failed");
   }
 }
+doDBCalls();
 
 app.set('view engine','ejs'); 
 app.set('port', 3000);
@@ -101,6 +101,29 @@ const generalAPIInput = (async (number : string )  => {
     }
   });
 
+  
+  
+  const storeInDb = (async(data : any, data_2 : any) => {
+    const currentTime = new Date().toDateString();
+    try{
+      //database insert
+      if(data?.name != "Onbestaande"){
+        if(data != undefined){
+          data.opzoekDatum= currentTime;
+          await client.db(DATABASE).collection(COLLECTION).insertOne(data);
+      }
+    }
+    if(data_2?.name != "Onbestaande"){
+      if(data_2 != undefined){
+        data_2.opzoekDatum= currentTime;
+        await client.db(DATABASE).collection(COLLECTION).insertOne(data_2);
+      } 
+    }
+     }catch(exc){
+          console.log(exc);
+     } 
+  });
+
 
 app.get('/',(req:any,res:any)=>{
     res.render('index');
@@ -117,17 +140,30 @@ app.get('/bedrijfOutput/:x/:y', async(req:any,res:any) => {
   let y = req.params.y;
   let data = await generalAPIInput(x);
   let data_2 = await generalAPIInput(y);
-
+  storeInDb(data,data_2);
     res.render('bedrijfOutput',{bedrijfOutput: await data, bedrijfOutput_2 : await data_2} )
 });
 
-app.get('/history',(req:any,res:any)=>{
-    res.render('history');
+
+const renderBedrijven= async (res:any) => {
+  let cursorAll = await client.db(DATABASE).collection(COLLECTION).find({});
+      let bedrijvenAll = await cursorAll.toArray();
+      res.render('history' ,{bedrijven: bedrijvenAll});
+}
+app.get('/history', async (req:any,res:any)=>{
+  try{
+    renderBedrijven(res);
+
+}catch(exc){
+        console.log(exc);
+}
 
 });
 
-app.get('/history_detail',(req:any,res:any)=>{
-    res.render('history_detail');
+app.get('/history/:x', async(req:any,res:any)=>{
+  let x = req.params.x;
+    let bedrijfX = await client.db(DATABASE).collection(COLLECTION).findOne( { referenceNumber : x} );
+  res.render('history_detail', {bedrijf : bedrijfX});
 });
 
 app.listen(app.get('port'), ()=>console.log( '[server] http://localhost:' + app.get('port')));

@@ -4,28 +4,31 @@ include('partials/header.ejs');
 
 <table class="mt-5 w-5/12 mx-auto  ">
     <tr class="flex">
-      <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5">TALENT-IT</td>
+      <td class="font-bold w-1/5" >Naam</td> <td class="w-4/5"> <%= bedrijf.name %></td>
     </tr>
     <tr class="flex"> 
-      <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5">Houtdok-Noordkaai 12</td>
+      <td class="font-bold  w-1/5">Adres</td> <td class="w-4/5"><%= bedrijf.address.street %> <%= bedrijf.address.number %></td>
     </tr>
     <tr class="flex">
-      <td class=" w-1/5"> </td> <td class="w-4/5">2030 Antwerpen</td>
+      <td class=" w-1/5"> </td> <td class="w-4/5"><%= bedrijf.address.postalCode %> <%= bedrijf.address.city %></td>
     </tr>
 
     <tr class= ""><td class="h-5"></td></tr>
 
     <tr class="">
-      <td class="font-bold">Datum neerlegging</td> <td class="text-right">16/09/2021</td>
+      <td class="font-bold">Datum neerlegging</td> <td class="text-right"><%= bedrijf.depositDate %></td>
     </tr>
     <tr>
-      <td class="font-bold">Eigen vermogen</td> <td class="text-right text-[color:green]">7.686.379</td>
+      <td class="font-bold">Eigen vermogen</td> <td class="text-right "><%= bedrijf.eigenVermogen %></td>
     </tr>
     <tr>
-      <td class="font-bold">Schulden</td> <td class="text-right text-[color:red]">7.262.651</td>
+      <td class="font-bold">Schulden</td> <td class="text-right"><%= bedrijf.schulden %></td>
     </tr>
     <tr>
-      <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right text-[color:green]">1.591.34</td>
+      <td class="font-bold">Bedrijfswinst</td class="text-right"> <td class="text-right"><%= bedrijf.bedrijfswinst %></td>
+    </tr>
+    <tr>
+      <td class="font-bold">Opzoekdatum:</td class="text-right"> <td class="text-right"><%= bedrijf.opzoekDatum %></td>
     </tr>
     </table>
     <%-
