@@ -9,7 +9,7 @@ export class Bedrijf{
     eigenVermogen : string;
     schulden: string;
     bedrijfswinst:string;
-    //opzoekDatum : string;
+    opzoekDatum?: string;
   
     constructor(referenceNumber: string, name: string, depositDate: string, address: Address, eigenVermogen:string, schulden:string, bedrijfswinst:string ) {
       this.referenceNumber = referenceNumber;
