@@ -1,14 +1,17 @@
 const express = require('express');
 const app = express();
 const ejs= require('ejs'); 
-import { Console } from 'console';
+
+app.set('view engine','ejs'); 
+app.set('port', 3000);
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'views')));
+
 import fetch from 'cross-fetch';
 import {Address} from './assets/AdresClasse';
 import {Bedrijf} from './assets/BedrijfClasse';
 import {BedrijfProps} from './assets/BedrijfClasse';
 
-//connect to mongodb
-//const dbURI = 'mongodb+srv://User1:Admin1@cluster0.vns4g.mongodb.net/test';
 const{MongoClient} = require('mongodb');
 const uri:string= "mongodb+srv://User1:Admin1@cluster0.vns4g.mongodb.net/NationaleBankBelgie?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {useUnifiedTopology:true});
@@ -27,12 +30,6 @@ const doDBCalls = async() => {
   }
 }
 doDBCalls();
-
-app.set('view engine','ejs'); 
-app.set('port', 3000);
-var path = require('path');
-app.use(express.static(path.join(__dirname, 'views')));
-
 
 const DetailAPIInput = (async (number : string)  => {
   try {
@@ -101,12 +98,9 @@ const generalAPIInput = (async (number : string )  => {
     }
   });
 
-  
-  
   const storeInDb = (async(data : any, data_2 : any) => {
     const currentTime = new Date().toDateString();
     try{
-      //database insert
       if(data?.name != "Onbestaande"){
         if(data != undefined){
           data.opzoekDatum= currentTime;
@@ -128,11 +122,6 @@ const generalAPIInput = (async (number : string )  => {
 app.get('/',(req:any,res:any)=>{
     res.render('index');
    
-});
-
-app.get('/bedrijfOutput',(req:any,res:any)=>{
-  res.render('bedrijfOutput');
- 
 });
 
 app.get('/bedrijfOutput/:x/:y', async(req:any,res:any) => {
@@ -167,8 +156,5 @@ app.get('/history/:x', async(req:any,res:any)=>{
 });
 
 app.listen(app.get('port'), ()=>console.log( '[server] http://localhost:' + app.get('port')));
-
-
-
 
 export {};

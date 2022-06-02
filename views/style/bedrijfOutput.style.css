@@ -5,3 +5,15 @@
     color:red;
 }
 
+@media screen and (max-width:450px) {
+    footer{
+        font-size: x-small;
+        position: relative;
+        text-align: center;
+        padding: 0;
+        padding-top: 3%;
+        margin: 0;
+    }
+}
+
+

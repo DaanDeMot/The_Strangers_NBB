@@ -1,9 +1,6 @@
 <%-
 include('partials/header.ejs');
 %>
- <section class="border-8 border-gray mb-10">
-    <input type="text" placeholder="Search.." class="w-full text-center py-2">
- </section>
  <% for(var i=0; i < bedrijven.length; i++) { %>
     <section  class="w-3/4 mx-auto flex border-b-2 border-gray pb-4 mb-5 ">
         <img src="public/images/gray_circle.png" class="image">
@@ -41,7 +38,7 @@ include('partials/header.ejs');
  <%-
  include('partials/footer.ejs');
  %>
+
 </body>
-<script src="assets/history.script.js"></script>
 <link rel="stylesheet" href="/style/history.style.css">
 </html>
