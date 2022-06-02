@@ -1,5 +1,3 @@
-console.log("vergelijkscript laadt..");
-
 var vermogen_L = document.getElementById('vermogen_L');
 var vermogen_R = document.getElementById('vermogen_R');
 var schulden_L = document.getElementById('schulden_L');

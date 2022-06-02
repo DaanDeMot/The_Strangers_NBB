@@ -21,3 +21,11 @@
     opacity: 1;
     text-decoration: underline;
 }
+
+footer{
+    position: relative;
+    text-align: center;
+    padding: 0;
+    padding-top: 1%;
+    margin: 0;
+}
