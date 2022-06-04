@@ -3,7 +3,7 @@ const app = express();
 const ejs= require('ejs'); 
 
 app.set('view engine','ejs'); 
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 var path = require('path');
 app.use(express.static(path.join(__dirname, 'views')));
 
