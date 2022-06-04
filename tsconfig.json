@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "lib": ["es2018", "dom"],
 
     /* Basic Options */
     // "incremental": true,                         /* Enable incremental compilation */
