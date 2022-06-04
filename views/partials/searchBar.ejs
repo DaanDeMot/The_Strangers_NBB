@@ -34,7 +34,7 @@ VergelijkButton.onclick = function(){
     else
     {
       if(showUserInput_1 && showUserInput_2 ){
-        let url = 'http://localhost:3000/bedrijfOutput/' + showUserInput_1() + '/' + showUserInput_2() + '';
+        let url = 'https://nbb-thestrangers.herokuapp.com/bedrijfOutput/' + showUserInput_1() + '/' + showUserInput_2() + '';
         console.log(url);
         location.href = url;
       }else if(showUserInput_1 && !showUserInput_2 ){
